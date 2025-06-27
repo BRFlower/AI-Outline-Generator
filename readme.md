@@ -19,8 +19,19 @@
 git clone <仓库地址>
 cd Mind Map Generator
 ```
+### 2. 建立环境
 
-### 2. 安装依赖
+为了避免依赖冲突，可以设置独立的虚拟环境
+
+```
+python -m venv venv
+# Windows 激活
+venv\Scripts\activate
+# macOS/Linux 激活
+source venv/bin/activate
+```
+
+### 3. 安装依赖
 
 建议使用 Python 3.8+，推荐虚拟环境。
 
@@ -28,7 +39,7 @@ cd Mind Map Generator
 pip install -r requirements.txt
 ```
 
-### 3. 启动服务
+### 4. 启动服务
 
 ```bash
 python web/app.py
