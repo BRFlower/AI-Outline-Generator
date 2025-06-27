@@ -251,16 +251,15 @@ with gr.Blocks(title="AI文档大纲生成", theme=gr.themes.Soft(), fill_height
         """切换会话时的处理函数"""
         this_chat = next((c for c in all_convs if c['id'] == conv_id), None)
         if not this_chat:
-            return None, None, [], None # Return updates for all outputs
-        formatted_history = format_chat_for_display(this_chat['chat_history'])        
-        # 返回更新后的聊天记录、资料、大纲和新的激活ID
-        return this_chat['material'], this_chat['structure'], formatted_history, this_chat['id']
+            return None, None, [], None, ""  # 多返回一个空标题
+        formatted_history = format_chat_for_display(this_chat['chat_history'])
+        return this_chat['material'], this_chat['structure'], formatted_history, this_chat['id'], this_chat['name']
 
     # 5. 当选择新会话时，更新所有相关模块和激活ID
     history_radio.change(
         fn=switch_conversation,
         inputs=[history_radio, conv_list_state],
-        outputs=[material_content, structure_content, chatbot, active_conv_id],
+        outputs=[material_content, structure_content, chatbot, active_conv_id, title_box],  # 多加 title_box
         queue=True
     )
 
